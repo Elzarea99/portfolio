@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مؤسسة مستبشرا الخيرية</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Noto Sans Arabic', 'Inter', sans-serif;
+            background-color: #f7f9fc;
+            color: #333;
+        }
+        .rtl {
+            direction: rtl;
+        }
+        /* Style for the modal overlay and content */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.75);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            max-width: 90%;
+            width: 500px;
+            text-align: center;
+            position: relative;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col rtl">
+
+    <!-- Header - رأس الصفحة -->
+    <header class="bg-white shadow-sm py-4 px-6 md:px-12 flex justify-between items-center fixed w-full top-0 z-50">
+        <div class="flex items-center space-x-2 space-x-reverse">
+            <!-- أيقونة SVG لمؤسسة مستبشرا -->
+            <svg class="w-8 h-8 text-indigo-600" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.37l7.73 3.86-7.73 3.86L4.27 8.23 12 4.37zM4 10.74l8 4v8l-8-4v-8zm10 0l8 4v8l-8-4v-8z"></path>
+            </svg>
+            <h1 class="text-2xl font-bold text-gray-800"> مؤسسة مستبشرا الخيرية</h1>
+        </div>
+        <nav class="hidden md:flex space-x-6 space-x-reverse">
+            <a href="#about" class="text-gray-600 hover:text-indigo-600 font-medium transition duration-300">عن الجمعية</a>
+            <a href="#mission" class="text-gray-600 hover:text-indigo-600 font-medium transition duration-300">مهمتنا</a>
+            <a href="#testimonials" class="text-gray-600 hover:text-indigo-600 font-medium transition duration-300">الشهادات</a>
+            <a href="#events" class="text-gray-600 hover:text-indigo-600 font-medium transition duration-300">الفعاليات</a>
+            <a href="#team" class="text-gray-600 hover:text-indigo-600 font-medium transition duration-300">فريقنا</a>
+            <a href="#contact" class="text-gray-600 hover:text-indigo-600 font-medium transition duration-300">اتصل بنا</a>
+        </nav>
+        <button class="md:hidden text-gray-600 focus:outline-none">
+            <!-- أيقونة قائمة الجوال -->
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
+        </button>
+    </header>
+
+    <!-- Main Content - المحتوى الرئيسي -->
+    <main class="flex-grow pt-24">
+
+        <!-- قسم البطل - Hero Section -->
+        <section id="hero" class="bg-indigo-600 text-white py-20 px-6 md:px-12 text-center shadow-lg">
+            <div class="container mx-auto">
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-4 animate-fade-in-up">نحو مستقبل أفضل، معًا.</h2>
+                <p class="text-lg md:text-xl max-w-2xl mx-auto mb-8 animate-fade-in">انضم إلينا في مهمتنا لتحسين الحياة وبناء مجتمع أقوى.</p>
+                <button onclick="showModal()" class="inline-block bg-white text-indigo-600 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105">
+                    تبرع الآن
+                </button>
+            </div>
+        </section>
+
+        <!-- قسم عن الجمعية - About Section -->
+        <section id="about" class="py-16 px-6 md:px-12 bg-white">
+            <div class="container mx-auto">
+                <div class="text-center mb-12">
+                    <h3 class="text-3xl font-bold text-gray-800 mb-4">عن مؤسسة مدينة مستبشرا الخيرية</h3>
+                    <p class="text-gray-600 max-w-3xl mx-auto">
+                        نحن منظمة غير ربحية مكرسة لتعزيز التغيير الإيجابي وتمكين الأفراد. من خلال برامجنا المتنوعة، نسعى جاهدين لمعالجة القضايا الرئيسية وبناء مجتمع أكثر شمولًا.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-gray-50 p-6 rounded-xl shadow-md transform transition duration-300 hover:scale-105">
+                        <h4 class="text-xl font-semibold text-indigo-600 mb-2">رؤيتنا</h4>
+                        <p class="text-gray-700">عالم يتمتع فيه كل شخص بفرصة للازدهار والوصول إلى أقصى إمكاناته، بغض النظر عن ظروفه.</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-xl shadow-md transform transition duration-300 hover:scale-105">
+                        <h4 class="text-xl font-semibold text-indigo-600 mb-2">تأثيرنا</h4>
+                        <p class="text-gray-700">منذ تأسيسنا، ساعدنا الآلاف من الأشخاص من خلال برامجنا المخصصة، مما أحدث فرقًا ملموسًا في حياتهم.</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-xl shadow-md transform transition duration-300 hover:scale-105">
+                        <h4 class="text-xl font-semibold text-indigo-600 mb-2">قيمنا</h4>
+                        <p class="text-gray-700">النزاهة، والتعاطف، والشفافية هي حجر الزاوية في عملنا. نؤمن بالمساءلة أمام مجتمعنا ومانحينا.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم مهمتنا - Mission Section -->
+        <section id="mission" class="py-16 px-6 md:px-12 bg-gray-100">
+            <div class="container mx-auto">
+                <div class="text-center mb-12">
+                    <h3 class="text-3xl font-bold text-gray-800 mb-4">مهمتنا</h3>
+                    <p class="text-gray-600 max-w-3xl mx-auto">
+                        في مؤسسة مؤسسة مستبشراب الخيرية، مهمتنا هي توفير الموارد الأساسية والدعم للمجتمعات المحرومة، وتمكينها من بناء مستقبل مستدام.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- بطاقات المشاريع النموذجية -->
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden transform transition duration-300 hover:shadow-xl">
+                        <img src="https://placehold.co/600x400/808080/FFFFFF?text=مبادرة+التعليم" alt="مبادرة التعليم" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h4 class="text-xl font-semibold text-gray-800 mb-2">ستر المنازل للمستحقين</h4>
+                            <p class="text-gray-600 text-sm">نوفر المستلزمات المدرسية، والمنح الدراسية، وبرامج الدروس الخصوصية لضمان حصول كل طفل على فرصة للنجاح.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden transform transition duration-300 hover:shadow-xl">
+                        <img src="https://placehold.co/600x400/808080/FFFFFF?text=برنامج+الصحة" alt="برنامج الصحة" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h4 class="text-xl font-semibold text-gray-800 mb-2">الصحة المجتمعية</h4>
+                            <p class="text-gray-600 text-sm">تركز برامجنا الصحية على توفير الوصول إلى الرعاية الطبية وتعزيز العافية في المناطق منخفضة الدخل.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden transform transition duration-300 hover:shadow-xl">
+                        <img src="https://placehold.co/600x400/808080/FFFFFF?text=الأمن+الغذائي" alt="الأمن الغذائي" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h4 class="text-xl font-semibold text-gray-800 mb-2">الأمن الغذائي</h4>
+                            <p class="text-gray-600 text-sm">نقوم بحملات لجمع الطعام وندير مطابخ مجتمعية لمكافحة الجوع وضمان عدم ترك أي شخص خلف الركب.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم الشهادات - Testimonials Section -->
+        <section id="testimonials" class="py-16 px-6 md:px-12 bg-indigo-500 text-white">
+            <div class="container mx-auto text-center">
+                <h3 class="text-3xl font-bold mb-12">ما يقوله الناس عنا</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white bg-opacity-20 p-8 rounded-xl shadow-md">
+                        <p class="text-lg italic mb-4">"بفضل دعمهم، تمكنت من إكمال تعليمي والحصول على وظيفة. غيرت مؤسسة مستبشرا الخيرية ب حياتي."</p>
+                        <p class="font-semibold">- أحمد يوسف</p>
+                    </div>
+                    <div class="bg-white bg-opacity-20 p-8 rounded-xl shadow-md">
+                        <p class="text-lg italic mb-4">"إن رؤية تأثير تبرعاتي المباشر على المجتمع أمر ملهم حقًا. أنا فخور بدعم هذه الجمعية."</p>
+                        <p class="font-semibold">- فاطمة عبد الله</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم الفعاليات - Events Section -->
+        <section id="events" class="py-16 px-6 md:px-12 bg-gray-100">
+            <div class="container mx-auto">
+                <div class="text-center mb-12">
+                    <h3 class="text-3xl font-bold text-gray-800 mb-4">فعالياتنا القادمة</h3>
+                    <p class="text-gray-600 max-w-3xl mx-auto">
+                        انضم إلينا في فعالياتنا القادمة لدعم قضايانا النبيلة والمشاركة في الأنشطة المجتمعية.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- بطاقة فعالية -->
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden transform transition duration-300 hover:shadow-xl">
+                        <img src="https://placehold.co/600x400/808080/FFFFFF?text=حملة+جمع+طعام" alt="حملة جمع طعام" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h4 class="text-xl font-semibold text-gray-800 mb-2">حملة جمع طعام</h4>
+                            <p class="text-gray-600 text-sm mb-2">تاريخ: 15 أكتوبر 2024</p>
+                            <p class="text-gray-600 text-sm">الموقع: مركز المجتمع المحلي</p>
+                        </div>
+                    </div>
+                    <!-- بطاقة فعالية أخرى -->
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden transform transition duration-300 hover:shadow-xl">
+                        <img src="https://placehold.co/600x400/808080/FFFFFF?text=ماراثون+لجمع+التبرعات" alt="ماراثون لجمع التبرعات" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h4 class="text-xl font-semibold text-gray-800 mb-2">ماراثون لجمع التبرعات</h4>
+                            <p class="text-gray-600 text-sm mb-2">تاريخ: 25 نوفمبر 2024</p>
+                            <p class="text-gray-600 text-sm">الموقع: حديقة المدينة الكبرى</p>
+                        </div>
+                    </div>
+                    <!-- بطاقة فعالية أخرى -->
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden transform transition duration-300 hover:shadow-xl">
+                        <img src="https://placehold.co/600x400/808080/FFFFFF?text=ورشة+تطوع" alt="ورشة تطوع" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h4 class="text-xl font-semibold text-gray-800 mb-2">ورشة عمل للمتطوعين الجدد</h4>
+                            <p class="text-gray-600 text-sm mb-2">تاريخ: 5 ديسمبر 2024</p>
+                            <p class="text-gray-600 text-sm">الموقع: مقر الجمعية</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم فريق العمل - Team Section -->
+        <section id="team" class="py-16 px-6 md:px-12 bg-white">
+            <div class="container mx-auto text-center">
+                <h3 class="text-3xl font-bold text-gray-800 mb-12">فريقنا</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- بطاقة عضو فريق -->
+                    <div class="bg-gray-50 p-6 rounded-xl shadow-md transform transition duration-300 hover:scale-105">
+                        <img src="https://placehold.co/150x150/d1d5db/FFFFFF?text=صورة+شخصية" alt="صورة عضو فريق" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover">
+                        <h4 class="text-xl font-semibold text-gray-800 mb-1">أحمد محمد</h4>
+                        <p class="text-indigo-600 font-medium text-sm">المدير التنفيذي</p>
+                    </div>
+                    <!-- بطاقة عضو فريق -->
+                    <div class="bg-gray-50 p-6 rounded-xl shadow-md transform transition duration-300 hover:scale-105">
+                        <img src="https://placehold.co/150x150/d1d5db/FFFFFF?text=صورة+شخصية" alt="صورة عضو فريق" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover">
+                        <h4 class="text-xl font-semibold text-gray-800 mb-1">ليلى علي</h4>
+                        <p class="text-indigo-600 font-medium text-sm">مدير البرامج</p>
+                    </div>
+                    <!-- بطاقة عضو فريق -->
+                    <div class="bg-gray-50 p-6 rounded-xl shadow-md transform transition duration-300 hover:scale-105">
+                        <img src="https://placehold.co/150x150/d1d5db/FFFFFF?text=صورة+شخصية" alt="صورة عضو فريق" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover">
+                        <h4 class="text-xl font-semibold text-gray-800 mb-1">سالم خالد</h4>
+                        <p class="text-indigo-600 font-medium text-sm">مسؤول العلاقات العامة</p>
+                    </div>
+                    <!-- بطاقة عضو فريق -->
+                    <div class="bg-gray-50 p-6 rounded-xl shadow-md transform transition duration-300 hover:scale-105">
+                        <img src="https://placehold.co/150x150/d1d5db/FFFFFF?text=صورة+شخصية" alt="صورة عضو فريق" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover">
+                        <h4 class="text-xl font-semibold text-gray-800 mb-1">نورة فهد</h4>
+                        <p class="text-indigo-600 font-medium text-sm">منسقة المتطوعين</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم الدعوة للعمل / التبرع - Call to Action / Donate Section -->
+        <section id="donate" class="py-16 px-6 md:px-12 bg-indigo-500 text-white text-center">
+            <div class="container mx-auto">
+                <h3 class="text-3xl font-bold mb-4">أحدث فرقًا اليوم</h3>
+                <p class="text-lg max-w-2xl mx-auto mb-8">
+                    تبرعك السخي يمكن أن يساعدنا في مواصلة عملنا الحيوي وإحداث تغيير دائم في حياة من هم في أمس الحاجة إليه.
+                </p>
+                <div class="flex flex-col md:flex-row justify-center items-center gap-4">
+                    <button onclick="showModal()" class="bg-white text-indigo-600 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105">
+                        تبرع الآن
+                    </button>
+                    <a href="#contact" class="text-white border-2 border-white font-bold py-3 px-8 rounded-full hover:bg-white hover:text-indigo-600 transition duration-300">
+                        كن متطوعًا
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم اتصل بنا - Contact Section -->
+        <section id="contact" class="py-16 px-6 md:px-12 bg-gray-100">
+            <div class="container mx-auto text-center">
+                <h3 class="text-3xl font-bold text-gray-800 mb-4">تواصل معنا</h3>
+                <p class="text-gray-600 max-w-2xl mx-auto mb-8">
+                    نحن متحمسون للتواصل معك. لا تتردد في التواصل معنا بخصوص أي أسئلة أو استفسارات شراكة أو طلبات تطوع.
+                </p>
+                <div class="flex flex-col md:flex-row justify-center items-center gap-8">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-indigo-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <!-- أيقونة بريد إلكتروني -->
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 2l-8 5-8-5h16z"></path>
+                            </svg>
+                        </div>
+                        <p class="text-gray-800 font-medium">info@webcitycharity.org</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-indigo-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <!-- أيقونة هاتف -->
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.34 1.02-.23.95.27 1.95.42 3 .42.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.74 21 3 13.26 3 3.27c0-.55.45-1 1-1h3.67c.55 0 1 .45 1 1 0 1.05.15 2.05.42 3.01.11.35.04.76-.23 1.03l-2.2 2.2z"></path>
+                            </svg>
+                        </div>
+                        <p class="text-gray-800 font-medium">+1 (123) 456-7890</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-indigo-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <!-- أيقونة موقع -->
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path>
+                            </svg>
+                        </div>
+                        <p class="text-gray-800 font-medium">123 شارع الخير، مستبشراب</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer - تذييل الصفحة -->
+    <footer class="bg-gray-800 text-white py-8 px-6 md:px-12 text-center mt-auto">
+        <div class="container mx-auto">
+            <p>&copy;   مؤسسة مستبشرا 2021  جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <!-- Donation Modal - نافذة التبرع المنبثقة -->
+    <div id="donation-modal" class="modal-overlay hidden" onclick="hideModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button onclick="hideModal()" class="absolute top-4 left-4 text-gray-400 hover:text-gray-600 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+            <h3 class="text-2xl font-bold text-gray-800 mb-6">تبرع لمؤسستنا</h3>
+            <p class="text-gray-600 mb-4">اختر المبلغ وطريقة الدفع لإحداث فرق.</p>
+            <input type="number" id="donation-amount" placeholder="أدخل مبلغ التبرع (مثل 100)" class="w-full p-3 mb-4 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-indigo-500 text-center">
+            <div id="thank-you-message" class="text-green-600 font-semibold mb-4 hidden"></div>
+
+            <div class="flex flex-col md:flex-row justify-center gap-4">
+                <button onclick="processPayment('المحافظ الإلكترونية')" class="bg-indigo-600 text-white font-bold py-3 px-6 rounded-full hover:bg-indigo-700 transition duration-300 flex-1">
+                    المحافظ الإلكترونية
+                </button>
+                <button onclick="processPayment('إنستاباي')" class="bg-indigo-600 text-white font-bold py-3 px-6 rounded-full hover:bg-indigo-700 transition duration-300 flex-1">
+                    إنستاباي
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // دالة لإظهار النافذة المنبثقة
+        function showModal() {
+            document.getElementById('donation-modal').classList.remove('hidden');
+        }
+
+        // دالة لإخفاء النافذة المنبثقة
+        function hideModal() {
+            document.getElementById('donation-modal').classList.add('hidden');
+            document.getElementById('thank-you-message').classList.add('hidden'); // إخفاء الرسالة عند إغلاق النافذة
+        }
+
+        // دالة لمحاكاة عملية الدفع
+        function processPayment(method) {
+            const amount = document.getElementById('donation-amount').value;
+            const messageElement = document.getElementById('thank-you-message');
+
+            if (amount && amount > 0) {
+                messageElement.textContent = `شكراً لك! تم استلام تبرعك بقيمة ${amount} جنيه مصري عن طريق ${method}.`;
+                messageElement.classList.remove('hidden');
+                // هنا يمكن إضافة منطق لإرسال البيانات إلى خادم حقيقي
+            } else {
+                messageElement.textContent = 'من فضلك أدخل مبلغًا صحيحًا للتبرع.';
+                messageElement.classList.remove('hidden');
+            }
+        }
+    </script>
+
+</body>
+</html>
